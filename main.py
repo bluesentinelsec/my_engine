@@ -16,7 +16,7 @@ def main(args):
                             format='%(levelname)s (%(filename)s:%(lineno)s) %(message)s')
 
     game = MyGame(args.media_file)
-    game.easy_init(screen_width=320, screen_height=200, fullscreen=args.disable_fullscreen)
+    game.easy_init(screen_width=320, screen_height=200, fullscreen=args.disable_fullscreen, display_fps=args.fps)
 
     title_scene = title.TitleScene(game=game)
     game.set_starting_scene(title_scene)
@@ -31,5 +31,6 @@ if __name__ == "__main__":
     parser.add_argument("media_file", type=str)
     parser.add_argument("-v", "--verbose", action="store_true")
     parser.add_argument("-d", "--disable_fullscreen", action="store_false")
+    parser.add_argument("-f", "--fps", action="store_true")
     args = parser.parse_args()
     main(args)

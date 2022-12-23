@@ -1,10 +1,14 @@
 from abc import ABC, abstractmethod
 
+import pygame
+from my_engine import my_game
+from my_engine.scenes.scene_base import Scene
 
-class Scene(ABC):
+
+class Entity(ABC):
 
     @abstractmethod
-    def __init__(self):
+    def __init__(self, game: my_game.MyGame, parent_scene: Scene):
         pass
     
     @abstractmethod
@@ -16,9 +20,9 @@ class Scene(ABC):
         pass
 
     @abstractmethod
-    def update(self):
+    def update(self, delta_time: int):
         pass
 
     @abstractmethod
-    def draw(self):
+    def draw(self, back_buffer: pygame.Surface):
         pass

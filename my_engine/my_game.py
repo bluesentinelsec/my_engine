@@ -15,6 +15,7 @@ class MyGame:
         self.game_clock: pygame.time.Clock = None
         self.delta_time = 0
         self.fps = 60
+        self.display_fps: bool = False
         self.scene_manager: SceneManager = SceneManager()
         self.media_manager: MediaManager = MediaManager(media_file=media_file)
         
@@ -48,9 +49,10 @@ class MyGame:
         pygame.display.quit()
 
     
-    def easy_init(self, screen_width: int, screen_height: int, fullscreen: bool):
+    def easy_init(self, screen_width: int, screen_height: int, fullscreen: bool, display_fps: bool):
         self.screen_width = screen_width
         self.screen_height = screen_height
+        self.display_fps = display_fps
         win_size = (self.screen_width, self.screen_height)
         win_flags = pygame.RESIZABLE | pygame.SCALED
         
@@ -90,6 +92,9 @@ class MyGame:
 
             # draw game objects
             self.scene_manager.draw_scene()
+
+            if self.display_fps: # ToDo: print this to game screen
+                logging.info(f"FPS: {self.game_clock.get_fps()}")
 
             # flip back buffer
             pygame.display.update()

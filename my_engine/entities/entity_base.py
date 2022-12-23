@@ -1,6 +1,5 @@
 from abc import ABC, abstractmethod
 
-import pygame
 
 class Scene(ABC):
 

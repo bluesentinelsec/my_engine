@@ -45,6 +45,17 @@ class MyGame:
     def close_window(self):
         pygame.display.quit()
 
+    
+    def easy_init(self, screen_width: int, screen_height: int, toggle_fullscreen: bool):
+        self.screen_width = screen_width
+        self.screen_height = screen_height
+        win_size = (self.screen_width, self.screen_height)
+        win_flags = pygame.RESIZABLE | pygame.SCALED
+        self.back_buffer = pygame.display.set_mode(win_size, win_flags)
+        if toggle_fullscreen:
+            pygame.display.toggle_fullscreen()
+
+
     def run_game(self):
 
         while self.game_is_running:
@@ -52,11 +63,17 @@ class MyGame:
             self.delta_time = self.game_clock.tick(60)
 
             for event in pygame.event.get():
+                
                 if event.type == pygame.QUIT:
-                    is_game_running = False
-                if event.type == pygame.KEYUP:
+                    self.game_is_running = False
+
+                if event.type == pygame.WINDOWCLOSE:
+                    self.game_is_running = False
+
+                if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_ESCAPE:
-                        is_game_running = False
+                        self.game_is_running = False
+                    
 
             # update game objects
 

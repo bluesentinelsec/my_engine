@@ -14,11 +14,14 @@ class Opponent(Entity):
         self.x_pos = 320 - 32
         self.y_pos = 200 / 2
         self.image: pygame.Surface = None
+        self.rect: pygame.Rect = None
+        self.speed = 0.1
     
 
     def on_enter(self):
         image_bytes = self.game.media_manager.get_file("media/paddle.png")
         self.image = pygame.image.load(image_bytes)
+        self.rect = self.image.get_rect()
 
     
     def on_exit(self):
@@ -26,7 +29,9 @@ class Opponent(Entity):
 
     
     def update(self, delta_time: int):
-        pass
+        self.rect.x = self.x_pos
+        self.rect.y = self.y_pos
 
     def draw(self, back_buffer: pygame.Surface):
         self.game.back_buffer.blit(self.image, (self.x_pos, self.y_pos))
+

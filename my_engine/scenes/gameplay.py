@@ -3,6 +3,10 @@ from my_engine.scenes import scene_base
 from my_engine.entities.entity_base import Entity
 from my_engine.media_manager import MediaManager
 
+from my_engine.entities.ball import Ball
+from my_engine.entities.opponent import Opponent
+from my_engine.entities.player import Player
+
 from typing import List
 
 
@@ -24,7 +28,13 @@ class GameplayScene(scene_base.Scene):
         self.background = pygame.image.load(background_bytes)
         
         # create starting game entities
-        
+        ball_i = Ball(game=self.game, parent_scene=self)
+        opponent_i = Opponent(game=self.game, parent_scene=self)
+        player_i = Player(game=self.game, parent_scene=self)
+
+        self.entities.append(ball_i)
+        self.entities.append(opponent_i)
+        self.entities.append(player_i)
 
         # append starting entities to list
         for ent in self.entities:
@@ -45,6 +55,9 @@ class GameplayScene(scene_base.Scene):
 
         # check collisions
         # check elapsed time
+        key_state = pygame.key.get_pressed()
+        if key_state[pygame.K_ESCAPE]:
+            self.game.game_is_running = False
 
     def draw(self):
         self.clear_stale_entities()

@@ -1,6 +1,8 @@
 from my_engine import my_game
 from my_engine.scenes import scene_base
 from my_engine.entities.entity_base import Entity
+from my_engine.media_manager import MediaManager
+from my_engine.entities.cursor import Cursor
 from typing import List
 
 
@@ -8,45 +10,49 @@ import logging
 
 import pygame
 
+
 class TitleScene(scene_base.Scene):
 
     def __init__(self, game: my_game.MyGame):
         self.game = game
         self.entities: List[Entity] = []
         self.entities_to_delete: List[Entity] = []
-    
+        self.background: pygame.Surface = None
 
     def on_enter(self):
-        logging.debug("TitleScene.on_enter")
+        background_bytes = self.game.media_manager.get_file(
+            "media/title_screen.png")
+        self.background = pygame.image.load(background_bytes)
         # create starting game entities
-        # append starting entities to list
+        self.entities.append(Cursor(game=self.game, parent_scene=self))
 
+        # append starting entities to list
+        for ent in self.entities:
+            ent.on_enter()
 
     def on_exit(self):
         self.clear_stale_entities()
-
+        for ent in self.entities:
+            ent.on_exit()
+        del self.background
 
     def update(self):
         self.clear_stale_entities()
-        logging.debug("TitleScene.update")
-        logging.debug(self.game.delta_time)
-        
+
         # get input
         # update entities
         for ent in self.entities:
-            ent.update()
+            ent.update(self.game.delta_time)
 
         # check collisions
         # check elapsed time
 
-
     def draw(self):
         self.clear_stale_entities()
-        logging.debug("TitleScene.draw")
-        logging.debug(self.game.back_buffer)
-        
+        self.game.back_buffer.blit(self.background, (0, 0))
+
         for ent in self.entities:
-            ent.draw()
+            ent.draw(self.game.back_buffer)
 
     def queue_free(self, entity_i: Entity):
         self.entities_to_delete.append(entity_i)

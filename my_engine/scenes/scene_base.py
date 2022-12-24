@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 
+
 import pygame
 
 class Scene(ABC):
@@ -22,4 +23,8 @@ class Scene(ABC):
 
     @abstractmethod
     def draw(self):
+        pass
+
+    @abstractmethod
+    def queue_free(self, entity_i):
         pass

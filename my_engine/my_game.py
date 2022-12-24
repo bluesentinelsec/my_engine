@@ -74,15 +74,7 @@ class MyGame:
             for event in pygame.event.get():
                 
                 if event.type == pygame.QUIT:
-                    self.game_is_running = False
-
-                if event.type == pygame.WINDOWCLOSE:
-                    self.game_is_running = False
-
-                if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_ESCAPE:
-                        self.game_is_running = False
-                    
+                    self.game_is_running = False                    
 
             # update game objects
             self.scene_manager.update_scene()

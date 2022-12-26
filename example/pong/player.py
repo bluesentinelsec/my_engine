@@ -9,10 +9,10 @@ class Player(my_engine.entity.Entity):
     def __init__(self, game: "my_engine.game.MyGame", parent_scene: "my_engine.scene.Scene") -> None:
         super().__init__(game, parent_scene)
         
-        super().set_image("media/paddle.png")
-        self.speed = 0.45
+        self.set_image("media/paddle.png")
         self.set_x_position(16)
         self.set_y_position(self.game.screen_h / 2)
+        self.speed = 0.45
         self.group = "player"
 
     def update(self):

@@ -1,13 +1,13 @@
-from my_engine.scenes import scene_base
+import my_engine.scene
+
 from typing import List
 
-import pygame
 
 class SceneManager:
     def __init__(self):
-        self.scene_list: List[scene_base.Scene] = []
+        self.scene_list: List["my_engine.scene.Scene"] = []
 
-    def push_scene(self, scene_i: scene_base.Scene):
+    def push_scene(self, scene_i: "my_engine.scene.Scene"):
         self.scene_list.append(scene_i)
         self.scene_list[0].on_enter()
 
@@ -16,7 +16,7 @@ class SceneManager:
             self.scene_list[0].on_exit()
             self.scene_list.pop()
 
-    def change_scene(self, scene_i: scene_base.Scene):
+    def change_scene(self, scene_i: "my_engine.scene.Scene"):
         self.pop_scene()
         self.push_scene(scene_i)
 

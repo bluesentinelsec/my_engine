@@ -45,6 +45,9 @@ class MyGame:
     def get_delta_time(self):
         return self.delta_time
 
+    def quit_game(self):
+        self.should_quit_game = True
+
     def set_starting_scene(self, scene: "my_engine.scene.Scene"):
         self.scene_manager.change_scene(scene)
 

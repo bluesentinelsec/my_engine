@@ -1,3 +1,5 @@
+import uuid
+
 import my_engine.game
 import my_engine.scene
 import my_engine.scene_manager
@@ -6,8 +8,8 @@ import pygame
 
 
 class Entity():
-    def __init__(self, game: "my_engine.game.MyGame", parent_scene: "my_engine.scene.Scene",
-                 scene_manager: "my_engine.scene_manager.SceneManager") -> None:
+    def __init__(self, game: "my_engine.game.MyGame", parent_scene: "my_engine.scene.Scene") -> None:
+        self.id = uuid.uuid4() # uniquely identifies each entity
         self.group = ""  # identifies the entity type to support collission detection
         self.is_active = True  # used to pause/unpause the entity
         self.image: pygame.Surface = None  # store the entity sprite image
@@ -16,7 +18,6 @@ class Entity():
         self.angle = 0  # what angle does the entity face?
         self.scale = 0  # should we stretch/shrink the entity?
         self.game = game
-        self.scene_manager = scene_manager
         self.parent_scene = parent_scene
         # ToDo: animation member variables
 
@@ -28,6 +29,12 @@ class Entity():
 
     def set_y_position(self, y_pos):
         self.rect.y = y_pos
+
+    def get_x_position(self):
+        return self.rect.x
+
+    def get_y_position(self):
+        return self.rect.y
 
     def set_speed(self, speed):
         self.speed = speed
@@ -41,10 +48,18 @@ class Entity():
     def deactivate(self):
         self.is_active = False
 
-    def set_image(self, image: pygame.Surface):
+    def set_image(self, image_file: str):
         # load image by file name from media manager
-        self.image = image
+        self.image = pygame.image.load(self.game.media_manager.get_file(image_file))
         self.set_rect(self.image.get_rect())
+        self.rect.x = 0
+        self.rect.y = 0
+
+    def get_image(self):
+        return self.image
+
+    def get_rect(self):
+        return self.rect
 
     def set_rect(self, rect: pygame.Rect):
         self.rect = rect
@@ -61,7 +76,7 @@ class Entity():
     def on_load(self):
         pass
 
-    def update(self, delta_time: int):
+    def update(self):
         pass
 
     def on_exit(self):

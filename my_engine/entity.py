@@ -6,11 +6,15 @@ import my_engine.scene_manager
 
 import pygame
 
+from typing import List
+from abc import ABC, abstractmethod
 
-class Entity():
-    def __init__(self, game: "my_engine.game.MyGame", parent_scene: "my_engine.scene.Scene") -> None:
+
+class Entity(ABC):
+    def __init__(self, ent_type: str, game: "my_engine.game.MyGame", parent_scene: "my_engine.scene.Scene") -> None:
         self.id = uuid.uuid4() # uniquely identifies each entity
-        self.group = ""  # identifies the entity type to support collission detection
+        self.entity_type: str = ent_type # identifies the entity type
+        self.groups = List[str] # identifies groups the entity is a part of
         self.is_active = True  # used to pause/unpause the entity
         self.image: pygame.Surface = None  # store the entity sprite image
         self.rect: pygame.Rect = None  # contains entity x/y position, width/height, etc.
@@ -21,8 +25,17 @@ class Entity():
         self.parent_scene = parent_scene
         # ToDo: animation member variables
 
-    def set_group(self, group):
-        self.group = group
+    def set_ent_type(self, ent_type: str):
+        self.entity_type = ent_type
+
+    def get_ent_type(self):
+        return self.entity_type
+    
+    def set_groups(self, group: str):
+        self.groups.append(group)
+
+    def get_groups(self):
+        return self.groups
 
     def set_x_position(self, x_pos):
         self.rect.x = x_pos
@@ -44,6 +57,9 @@ class Entity():
 
     def set_scale(self, scale):
         self.scale = scale
+
+    def activate(self):
+        self.is_active = True
 
     def deactivate(self):
         self.is_active = False
@@ -73,10 +89,16 @@ class Entity():
     def check_collision(self, entity_to_check: "Entity") -> bool:
         return self.rect.colliderect(entity_to_check.rect)
 
+    
     def on_load(self):
         pass
 
+    @abstractmethod
     def update(self):
+        pass
+
+    @abstractmethod
+    def draw(self):
         pass
 
     def on_exit(self):

@@ -13,7 +13,7 @@ class Scene(my_engine.scene.Scene):
     def __init__(self, game: my_engine.game.MyGame) -> None:
         super().__init__(game)
 
-    def on_enter(self):
+    def on_load(self):
         # create background entity
         self.add_entity(background.Background(game=self.game, parent_scene=self))
         self.add_entity(player.Player(game=self.game, parent_scene=self))

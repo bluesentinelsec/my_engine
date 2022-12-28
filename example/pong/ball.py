@@ -5,13 +5,12 @@ import my_engine.scene_manager
 
 
 class Ball(my_engine.entity.Entity):
-    def __init__(self, game: "my_engine.game.MyGame", parent_scene: "my_engine.scene.Scene") -> None:
-        super().__init__(game, parent_scene)
+    def __init__(self, ent_type: str, game: "my_engine.game.MyGame", parent_scene: "my_engine.scene.Scene") -> None:
+        super().__init__(ent_type, game, parent_scene)
 
         self.set_image("media/ball.png")
         self.set_x_position(self.game.screen_w / 2)
         self.set_y_position(self.game.screen_h / 2)
-        self.group = "ball"
 
         self.move_up = -1
         self.move_down = 1
@@ -42,8 +41,8 @@ class Ball(my_engine.entity.Entity):
 
     def handle_collisions(self):
         # get ptr to player
-        players = self.parent_scene.get_entities_by_group("player")
-        opponents = self.parent_scene.get_entities_by_group("opponent")
+        players = self.parent_scene.get_entities_of_type("player")
+        opponents = self.parent_scene.get_entities_of_type("opponent")
 
         for player in players:
             if self.check_collision(player):

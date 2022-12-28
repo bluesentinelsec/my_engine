@@ -9,7 +9,7 @@ class SceneManager:
 
     def push_scene(self, scene_i: "my_engine.scene.Scene"):
         self.scene_list.append(scene_i)
-        self.scene_list[0].on_enter()
+        self.scene_list[0].on_load()
 
     def pop_scene(self):
         if len(self.scene_list) > 0:

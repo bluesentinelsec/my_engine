@@ -6,14 +6,13 @@ import my_engine.scene_manager
 import pygame
 
 class Opponent(my_engine.entity.Entity):
-    def __init__(self, game: "my_engine.game.MyGame", parent_scene: "my_engine.scene.Scene") -> None:
-        super().__init__(game, parent_scene)
+    def __init__(self, ent_type: str, game: "my_engine.game.MyGame", parent_scene: "my_engine.scene.Scene") -> None:
+        super().__init__(ent_type, game, parent_scene)
         
         self.set_image("media/paddle.png")
         self.set_x_position(self.game.screen_w - 16 - self.rect.width)
         self.set_y_position(self.game.screen_h / 2)
         self.speed = 0.45
-        self.group = "opponent"
         
 
     def update(self):

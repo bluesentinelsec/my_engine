@@ -5,12 +5,13 @@ from typing import List
 
 import pygame
 
+
 class Scene:
     def __init__(self, game: "my_engine.game.MyGame") -> None:
         self.game = game
         self.entities: List["my_engine.entity.Entity"] = []
 
-    def on_enter(self):
+    def on_load(self):
         # read persistent data from disk?
         # create needed entities
         # add entities to a list
@@ -30,21 +31,17 @@ class Scene:
         # call each entitie's update method
         for each_ent in self.entities:
             each_ent.update()
-        
 
     def draw(self):
         # clear backbuffer
-        self.game.screen.fill((0,0,0))
+        self.game.screen.fill((0, 0, 0))
 
         # draw each entity
         for each_ent in self.entities:
-            s = each_ent.get_image()
-            r = each_ent.get_rect()
-            self.game.screen.blit(s, r)
-        
+            each_ent.draw()
+
         # flip the backbuffer
         pygame.display.flip()
-
 
     def add_entity(self, ent: "my_engine.entity.Entity"):
         self.entities.append(ent)
@@ -60,7 +57,15 @@ class Scene:
     def get_entities_by_group(self, group: str):
         entities_in_group = []
         for each_ent in self.entities:
-            if each_ent.group == group:
+            if group in each_ent.groups:
                 entities_in_group.append(each_ent)
 
         return entities_in_group
+
+    def get_entities_of_type(self, ent_type: str):
+        entities_of_type = []
+        for each_ent in self.entities:
+            if ent_type == each_ent.get_ent_type():
+                entities_of_type.append(each_ent)
+
+        return entities_of_type

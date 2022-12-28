@@ -13,12 +13,25 @@ def create_media_file(out_file: str, media_directory: str):
             f"'{media_directory}' is not a directory")
         return
 
-    dir_list = get_files_in_dir(media_directory)
+    # save current working directory for later
+    current_dir = os.getcwd()
 
+    # enter media folder's parent directory
+    # so our packed media file has correct file paths
+    os.chdir(f"{media_directory}/../")
+    
+    # list all files in media directory
+    dir_list = get_files_in_dir(media_directory)
+    
+    # return to original working directory
+    os.chdir(current_dir)
+
+    # write media files to a zip archive
     with zipfile.ZipFile(out_file, "w", zipfile.ZIP_DEFLATED) as zipper:
         for each_file in dir_list:
             zipper.write(each_file)
 
+    # ToDo: password encrypt media file
 
 def get_files_in_dir(directory):
     files_in_dir = []

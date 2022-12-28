@@ -1,7 +1,9 @@
 import my_engine.entity
 import my_engine.game
+import my_engine.keyboard
 import my_engine.scene
 import my_engine.scene_manager
+
 
 import pygame
 
@@ -25,13 +27,12 @@ class Opponent(my_engine.entity.Entity):
             self.set_y_position(self.game.screen_h - self.rect.height)
         
     def check_keyboard(self):
-        key_state = pygame.key.get_pressed()
-        
-        if key_state[pygame.K_UP]:
+                
+        if my_engine.keyboard.is_key_down(pygame.K_UP):
             self.rect.y -= self.speed * self.game.delta_time
 
-        if key_state[pygame.K_DOWN]:
+        if my_engine.keyboard.is_key_down(pygame.K_DOWN):
             self.rect.y += self.speed * self.game.delta_time
 
-        if key_state[pygame.K_ESCAPE]:
+        if my_engine.keyboard.is_key_pressed_once(pygame.K_ESCAPE):
             self.game.quit_game()

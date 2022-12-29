@@ -41,6 +41,8 @@ class MyGame:
         self.media_manager = my_engine.media.MediaManager(self.media_file)
 
         self.action_handler = my_engine.action.Action()
+
+        pygame.font.init()
         
         random.seed()
 

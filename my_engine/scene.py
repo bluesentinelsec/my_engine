@@ -28,14 +28,15 @@ class Scene:
             if event.type == pygame.QUIT:
                 self.game.quit_game()
 
+        # clear backbuffer
+        self.game.screen.fill((0, 0, 0))
+
         # call each entitie's update method
         for each_ent in self.entities:
             each_ent.update()
 
     def draw(self):
-        # clear backbuffer
-        self.game.screen.fill((0, 0, 0))
-
+        
         # draw each entity
         for each_ent in self.entities:
             each_ent.draw()

@@ -9,7 +9,9 @@ class ScreenPrinter():
         self.y_pos = 10
         self.backbuffer = backbuffer
 
-    def print(self, text):
+    def print(self, text, x_pos=10, y_pos=10):
+        self.x_pos = x_pos
+        self.y_pos = y_pos
         text_bmp = self.font.render(text, False, self.color)
         self.backbuffer.blit(text_bmp, (self.x_pos, self.y_pos))
 

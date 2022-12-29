@@ -19,16 +19,15 @@ class Alien(my_engine.entity.Entity):
         self.printer = my_engine.screen_print.ScreenPrinter(self.game.screen)
         self.alien_animator = my_engine.animation.Animator(self.game)
         self.alien_animator.init_animation(self.get_image(), 16, 16, 2)
-        self.kb = my_engine.keyboard.Keyboard()
 
     def update(self):
 
 
-        if self.kb.is_key_pressed_once(pygame.K_ESCAPE):
+        if my_engine.keyboard.is_key_pressed_once(pygame.K_ESCAPE):
             self.game.quit_game()
 
-        if self.kb.is_key_pressed_once(pygame.K_RETURN):
-            print("it worked!")
+        if my_engine.keyboard.is_key_pressed_once(pygame.K_RETURN):
+            self.printer.print(f"It worked!", 10, 40)
 
         
             #self.alien_animator.play_animation(frame_duration=500)

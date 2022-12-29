@@ -3,6 +3,7 @@ import pygame
 import pygame._sdl2
 from pygame._sdl2.controller import Controller
 
+import logging
 
 last_button_state = 1234567
 
@@ -11,16 +12,29 @@ class ControllerWrapper:
     def __init__(self, controller_index=0) -> None:
         self.controller_index = controller_index
         pygame._sdl2.controller.init()
-        self.controller_i = Controller.from_joystick(
-            pygame.joystick.Joystick(0))
-        self.controller_i.init()
+        self.controller_i = None
+        try:
+            self.controller_i = Controller.from_joystick(
+                pygame.joystick.Joystick(0))
+            self.controller_i.init()
+        except:
+            logging.error(
+                f"unable to initialize controller: {self.controller_index}")
 
     def is_button_pressed(self, py_button: int):
+
+        if not self.controller_i:
+            return False
+
         if self.controller_i.get_button(py_button):
             return True
         return False
 
     def is_button_pressed_once(self, py_button: int):
+
+        if not self.controller_i:
+            return False
+
         global last_button_state
         if py_button == last_button_state:
             if self.is_button_pressed(py_button):
@@ -39,9 +53,8 @@ class ControllerWrapper:
 
 def main():
 
-
     pygame.init()
-    screen = pygame.display.set_mode((320,200))
+    screen = pygame.display.set_mode((320, 200))
 
     # create the controller object
     my_controller = ControllerWrapper(0)

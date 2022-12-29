@@ -1,6 +1,6 @@
-import keyboard
-import controller
-import screen_print
+import my_engine.keyboard
+import my_engine.controller
+import my_engine.screen_print
 
 import logging
 import pygame
@@ -23,7 +23,7 @@ class Action:
         self.action_right_shoulder = 13
 
         self.controller_index = controller_index
-        self.controller_ptr = controller.ControllerWrapper(
+        self.controller_ptr = my_engine.controller.ControllerWrapper(
             self.controller_index)
 
     def is_action_pressed(self, action: int):
@@ -31,66 +31,66 @@ class Action:
         button_is_pressed = False
 
         if action == self.action_up:
-            key_is_pressed = keyboard.is_key_down(pygame.K_UP)
+            key_is_pressed = my_engine.keyboard.is_key_down(pygame.K_UP)
             button_is_pressed = self.controller_ptr.is_button_pressed(
                 pygame.CONTROLLER_BUTTON_DPAD_UP)
 
         elif action == self.action_down:
-            key_is_pressed = keyboard.is_key_down(pygame.K_DOWN)
+            key_is_pressed = my_engine.keyboard.is_key_down(pygame.K_DOWN)
             button_is_pressed = self.controller_ptr.is_button_pressed(
                 pygame.CONTROLLER_BUTTON_DPAD_DOWN)
 
         elif action == self.action_left:
-            key_is_pressed = keyboard.is_key_down(pygame.K_LEFT)
+            key_is_pressed = my_engine.keyboard.is_key_down(pygame.K_LEFT)
             button_is_pressed = self.controller_ptr.is_button_pressed(
                 pygame.CONTROLLER_BUTTON_DPAD_LEFT)
 
         elif action == self.action_right:
-            key_is_pressed = keyboard.is_key_down(pygame.K_RIGHT)
+            key_is_pressed = my_engine.keyboard.is_key_down(pygame.K_RIGHT)
             button_is_pressed = self.controller_ptr.is_button_pressed(
                 pygame.CONTROLLER_BUTTON_DPAD_RIGHT)
 
         elif action == self.action_a:
-            key_is_pressed = keyboard.is_key_down(pygame.K_z)
+            key_is_pressed = my_engine.keyboard.is_key_down(pygame.K_z)
             button_is_pressed = self.controller_ptr.is_button_pressed(
                 pygame.CONTROLLER_BUTTON_A)
 
         elif action == self.action_b:
-            key_is_pressed = keyboard.is_key_down(pygame.K_x)
+            key_is_pressed = my_engine.keyboard.is_key_down(pygame.K_x)
             button_is_pressed = self.controller_ptr.is_button_pressed(
                 pygame.CONTROLLER_BUTTON_B)
 
         elif action == self.action_x:
-            key_is_pressed = keyboard.is_key_down(pygame.K_a)
+            key_is_pressed = my_engine.keyboard.is_key_down(pygame.K_a)
             button_is_pressed = self.controller_ptr.is_button_pressed(
                 pygame.CONTROLLER_BUTTON_X)
 
         elif action == self.action_y:
-            key_is_pressed = keyboard.is_key_down(pygame.K_s)
+            key_is_pressed = my_engine.keyboard.is_key_down(pygame.K_s)
             button_is_pressed = self.controller_ptr.is_button_pressed(
                 pygame.CONTROLLER_BUTTON_Y)
 
         elif action == self.action_start:
-            key_is_pressed = keyboard.is_key_down(pygame.K_RETURN)
+            key_is_pressed = my_engine.keyboard.is_key_down(pygame.K_RETURN)
             button_is_pressed = self.controller_ptr.is_button_pressed(
                 pygame.CONTROLLER_BUTTON_START)
 
         elif action == self.action_select:
-            key_is_pressed = keyboard.is_key_down(pygame.K_RSHIFT)
+            key_is_pressed = my_engine.keyboard.is_key_down(pygame.K_RSHIFT)
             button_is_pressed = self.controller_ptr.is_button_pressed(
                 pygame.CONTROLLER_BUTTON_BACK)
 
         elif action == self.action_escape:
-            key_is_pressed = keyboard.is_key_down(pygame.K_ESCAPE)
+            key_is_pressed = my_engine.keyboard.is_key_down(pygame.K_ESCAPE)
             button_is_pressed = False
 
         elif action == self.action_left_shoulder:
-            key_is_pressed = keyboard.is_key_down(pygame.K_c)
+            key_is_pressed = my_engine.keyboard.is_key_down(pygame.K_c)
             button_is_pressed = self.controller_ptr.is_button_pressed(
                 pygame.CONTROLLER_BUTTON_LEFTSHOULDER)
 
         elif action == self.action_right_shoulder:
-            key_is_pressed = keyboard.is_key_down(pygame.K_d)
+            key_is_pressed = my_engine.keyboard.is_key_down(pygame.K_d)
             button_is_pressed = self.controller_ptr.is_button_pressed(
                 pygame.CONTROLLER_BUTTON_RIGHTSHOULDER)
 
@@ -111,66 +111,73 @@ class Action:
         button_is_pressed = False
 
         if action == self.action_up:
-            key_is_pressed = keyboard.is_key_pressed_once(pygame.K_UP)
+            key_is_pressed = my_engine.keyboard.is_key_pressed_once(
+                pygame.K_UP)
             button_is_pressed = self.controller_ptr.is_button_pressed_once(
                 pygame.CONTROLLER_BUTTON_DPAD_UP)
 
         elif action == self.action_down:
-            key_is_pressed = keyboard.is_key_pressed_once(pygame.K_DOWN)
+            key_is_pressed = my_engine.keyboard.is_key_pressed_once(
+                pygame.K_DOWN)
             button_is_pressed = self.controller_ptr.is_button_pressed_once(
                 pygame.CONTROLLER_BUTTON_DPAD_DOWN)
 
         elif action == self.action_left:
-            key_is_pressed = keyboard.is_key_pressed_once(pygame.K_LEFT)
+            key_is_pressed = my_engine.keyboard.is_key_pressed_once(
+                pygame.K_LEFT)
             button_is_pressed = self.controller_ptr.is_button_pressed_once(
                 pygame.CONTROLLER_BUTTON_DPAD_LEFT)
 
         elif action == self.action_right:
-            key_is_pressed = keyboard.is_key_pressed_once(pygame.K_RIGHT)
+            key_is_pressed = my_engine.keyboard.is_key_pressed_once(
+                pygame.K_RIGHT)
             button_is_pressed = self.controller_ptr.is_button_pressed_once(
                 pygame.CONTROLLER_BUTTON_DPAD_RIGHT)
 
         elif action == self.action_a:
-            key_is_pressed = keyboard.is_key_pressed_once(pygame.K_z)
+            key_is_pressed = my_engine.keyboard.is_key_pressed_once(pygame.K_z)
             button_is_pressed = self.controller_ptr.is_button_pressed_once(
                 pygame.CONTROLLER_BUTTON_A)
 
         elif action == self.action_b:
-            key_is_pressed = keyboard.is_key_pressed_once(pygame.K_x)
+            key_is_pressed = my_engine.keyboard.is_key_pressed_once(pygame.K_x)
             button_is_pressed = self.controller_ptr.is_button_pressed_once(
                 pygame.CONTROLLER_BUTTON_B)
 
         elif action == self.action_x:
-            key_is_pressed = keyboard.is_key_pressed_once(pygame.K_a)
+            key_is_pressed = my_engine.keyboard.is_key_pressed_once(pygame.K_a)
             button_is_pressed = self.controller_ptr.is_button_pressed_once(
                 pygame.CONTROLLER_BUTTON_X)
 
         elif action == self.action_y:
-            key_is_pressed = keyboard.is_key_pressed_once(pygame.K_s)
+            key_is_pressed = my_engine.keyboard.is_key_pressed_once(pygame.K_s)
             button_is_pressed = self.controller_ptr.is_button_pressed_once(
                 pygame.CONTROLLER_BUTTON_Y)
 
         elif action == self.action_start:
-            key_is_pressed = keyboard.is_key_pressed_once(pygame.K_RETURN)
+            key_is_pressed = my_engine.keyboard.is_key_pressed_once(
+                pygame.K_RETURN)
             button_is_pressed = self.controller_ptr.is_button_pressed_once(
                 pygame.CONTROLLER_BUTTON_START)
 
         elif action == self.action_select:
-            key_is_pressed = keyboard.is_key_pressed_once(pygame.K_RSHIFT)
+            key_is_pressed = my_engine.keyboard.is_key_pressed_once(
+                pygame.K_RSHIFT)
             button_is_pressed = self.controller_ptr.is_button_pressed_once(
                 pygame.CONTROLLER_BUTTON_BACK)
 
         elif action == self.action_escape:
-            key_is_pressed = keyboard.is_key_pressed_once(pygame.K_ESCAPE)
+            key_is_pressed = my_engine.keyboard.is_key_pressed_once(
+                pygame.K_ESCAPE)
             button_is_pressed = False
 
         elif action == self.action_left_shoulder:
-            key_is_pressed = keyboard.is_key_pressed_once(pygame.K_c)
+            key_is_pressed = my_engine.keyboard.is_key_pressed_once(pygame.K_c)
             button_is_pressed = self.controller_ptr.is_button_pressed_once(
                 pygame.CONTROLLER_BUTTON_LEFTSHOULDER)
 
         elif action == self.action_right_shoulder:
-            key_is_pressed = keyboard.is_key_pressed_once(pygame.K_d)
+            key_is_pressed = my_engine.keyboard.is_key_pressed_once(pygame.K_d)
             button_is_pressed = self.controller_ptr.is_button_pressed_once(
                 pygame.CONTROLLER_BUTTON_RIGHTSHOULDER)
 
@@ -190,7 +197,7 @@ class Action:
 def main():
     pygame.init()
     screen = pygame.display.set_mode((320, 200))
-    screen_printer = screen_print.ScreenPrinter(screen)
+    screen_printer = my_engine.screen_print.ScreenPrinter(screen)
     action = Action()
 
     while True:

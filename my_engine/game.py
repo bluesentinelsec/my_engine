@@ -6,6 +6,7 @@ import random
 import my_engine.scene_manager
 import my_engine.scene
 import my_engine.media
+import my_engine.action
 
 # external
 import pygame
@@ -39,6 +40,8 @@ class MyGame:
 
         self.media_manager = my_engine.media.MediaManager(self.media_file)
 
+        self.action_handler = my_engine.action.Action()
+        
         random.seed()
 
     def get_screen_width(self):

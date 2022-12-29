@@ -3,6 +3,7 @@ import my_engine.game
 import my_engine.scene
 import my_engine.scene_manager
 import my_engine.transitions
+import my_engine.keyboard
 
 import pygame
 
@@ -17,7 +18,7 @@ class Player(my_engine.entity.Entity):
         self.speed = 0.45
 
     def update(self):
-        self.check_keyboard()
+        self.check_input()
 
         if self.get_y_position() < 0:
             self.set_y_position(0)
@@ -26,14 +27,13 @@ class Player(my_engine.entity.Entity):
             move = self.game.screen_h - self.rect.height
             self.set_y_position(move)
 
-    def check_keyboard(self):
-        key_state = pygame.key.get_pressed()
+    def check_input(self):
 
-        if key_state[pygame.K_w]:
+        if my_engine.keyboard.is_key_down(pygame.K_w):
             self.rect.y -= self.speed * self.game.delta_time
 
-        if key_state[pygame.K_s]:
+        if my_engine.keyboard.is_key_down(pygame.K_s):
             self.rect.y += self.speed * self.game.delta_time
 
-        if key_state[pygame.K_ESCAPE]:
+        if my_engine.keyboard.is_key_down(pygame.K_ESCAPE):
             self.game.quit_game()

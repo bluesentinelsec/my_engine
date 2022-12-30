@@ -6,21 +6,28 @@ import zipfile
 
 
 class MediaManager:
-    def __init__(self, media_file: str):
+    def __init__(self, media_file: str = "data.dat"):
         self.media_file = media_file
         self.media_handle = ""
+        self.fallback_to_real_file = False
         self.open_media_file()
 
     def open_media_file(self):
         try:
             self.media_handle = zipfile.ZipFile(self.media_file, "r", zipfile.ZIP_DEFLATED)
         except Exception as e:
-            logging.fatal(e)
-            sys.exit(-1)
+            logging.debug(e)
+            logging.debug("falling back to real file paths")
+            self.fallback_to_real_file = True
 
     def get_file(self, file: str):
-        data = self.media_handle.read(file)
-        return io.BytesIO(data)
+        if self.fallback_to_real_file:
+            with open(file, "rb") as f:
+                data = f.read()
+                return data
+        else:
+            data = self.media_handle.read(file)
+            return io.BytesIO(data)
 
 def create_media_file(out_file: str, media_directory: str):
 

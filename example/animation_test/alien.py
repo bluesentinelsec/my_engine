@@ -18,8 +18,8 @@ class Alien(my_engine.entity.Entity):
         self.set_y_position(self.game.screen_h / 2)
         self.animation_should_play = False
         self.printer = my_engine.screen_print.ScreenPrinter(self.game.screen)
-        self.alien_animator = my_engine.animation.Animator(self.game)
-        self.alien_animator.init_animation(self.get_image(), 16, 16, 2)
+        self.animation = my_engine.animation.Animator(self.game)
+        self.animation.init_animation(self.get_image(), 16, 16, 2)
 
     def update(self):
 
@@ -34,13 +34,8 @@ class Alien(my_engine.entity.Entity):
             self.animation_should_play = False
         
         if self.animation_should_play:
-            self.alien_animator.play_animation(frame_duration=500)
+            self.animation.play_animation(frame_duration=500)
             
 
-        
-            #self.alien_animator.stop_animation()
-
     def draw(self):
-        # self.game.screen.blit(self.get_image(), self.get_rect())
-        self.alien_animator.draw_animation(self.get_rect())
-        self.printer.print(f"Delta time: {self.game.delta_time}")
+        self.animation.draw_animation(self.get_rect())

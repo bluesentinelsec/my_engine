@@ -38,15 +38,20 @@ class ControllerWrapper:
         global last_button_state
         if py_button == last_button_state:
             if self.is_button_pressed(py_button):
+                # button is still pressed
+                last_button_state = py_button
                 return False
             else:
+                # button was released
                 last_button_state = 1234567
                 return False
         else:
             if self.is_button_pressed(py_button):
+                # button was just pressed
                 last_button_state = py_button
                 return True
             else:
+                # nothing is pressed
                 last_button_state = 1234567
                 return False
 

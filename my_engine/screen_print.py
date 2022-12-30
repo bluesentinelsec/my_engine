@@ -12,13 +12,12 @@ class ScreenPrinter():
         self.x_pos = 10
         self.y_pos = 10
         self.game = game
-        self.backbuffer = game.get_backbuffer()
 
     def print(self, text, x_pos=10, y_pos=10):
         self.x_pos = x_pos
         self.y_pos = y_pos
         text_bmp = self.font.render(text, False, self.color)
-        self.backbuffer.blit(text_bmp, (self.x_pos, self.y_pos))
+        self.game.screen.blit(text_bmp, (self.x_pos, self.y_pos))
 
     def set_font(self, font_file):
         font_bytes = self.game.media_manager.get_file(font_file)

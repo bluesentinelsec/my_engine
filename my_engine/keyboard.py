@@ -14,6 +14,7 @@ def is_key_pressed_once(py_key: int) -> bool:
     if last_key_state == py_key:
         if key_state[py_key]:
             # key is still pressed
+            last_key_state = py_key
             return False
         else:
             # key was just released
@@ -25,7 +26,7 @@ def is_key_pressed_once(py_key: int) -> bool:
             last_key_state = py_key
             return True
         else:
-            # key is still pressed
+            # nothing is pressed
             last_key_state = -1
             return False
 

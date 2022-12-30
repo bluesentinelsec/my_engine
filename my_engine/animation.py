@@ -22,8 +22,8 @@ class Animator:
         self.frame_width = frame_width
         self.frame_height = frame_height
         self.total_frames = total_frames
-        self.frame_image = self.sprite_sheet.subsurface(pygame.Rect(
-            self.current_frame, 0, self.frame_width, self.frame_height))
+        self.frame_image = self.sprite_sheet.subsurface(
+            self.current_frame, 0, self.frame_width, self.frame_height)
 
     def play_animation(self, frame_duration=1000, loop=True):
 
@@ -54,7 +54,7 @@ class Animator:
                 if not loop:
                     self.stop_animation()
 
-            # extract frame from sprite sheet    
+            # extract frame from sprite sheet
             self.frame_image = self.sprite_sheet.subsurface(pygame.Rect(
                 self.current_frame, 0, self.frame_width, self.frame_height))
 

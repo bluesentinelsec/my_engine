@@ -16,6 +16,7 @@ class Alien(my_engine.entity.Entity):
         self.set_image("media/alien_sheet.png")
         self.set_x_position(self.game.screen_w / 2)
         self.set_y_position(self.game.screen_h / 2)
+        self.animation_should_play = False
         self.printer = my_engine.screen_print.ScreenPrinter(self.game.screen)
         self.alien_animator = my_engine.animation.Animator(self.game)
         self.alien_animator.init_animation(self.get_image(), 16, 16, 2)
@@ -27,10 +28,13 @@ class Alien(my_engine.entity.Entity):
             self.game.quit_game()
 
         if my_engine.keyboard.is_key_pressed_once(pygame.K_RETURN):
-            self.printer.print(f"It worked!", 10, 40)
+            self.animation_should_play = True
 
+        if my_engine.keyboard.is_key_pressed_once(pygame.K_RSHIFT):
+            self.animation_should_play = False
         
-            #self.alien_animator.play_animation(frame_duration=500)
+        if self.animation_should_play:
+            self.alien_animator.play_animation(frame_duration=500)
             
 
         

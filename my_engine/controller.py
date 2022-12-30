@@ -55,6 +55,9 @@ class ControllerWrapper:
                 last_button_state = 1234567
                 return False
 
+    def is_axis_down(self, py_axis):
+        axis_state = self.controller_i.get_axis(py_axis)
+
 
 def main():
 

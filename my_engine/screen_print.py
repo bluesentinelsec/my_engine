@@ -1,19 +1,34 @@
+import my_engine.game
+import my_engine.media
+
 import pygame
 
 
 class ScreenPrinter():
-    def __init__(self, backbuffer: pygame.Surface) -> None:
-        self.font = pygame.font.Font(None, 30)
+    def __init__(self, game: "my_engine.game.MyGame") -> None:
+        self.font_size = 30
+        self.font = pygame.font.Font(None, self.font_size)
         self.color = pygame.Color(255, 255, 255, 255)
         self.x_pos = 10
         self.y_pos = 10
-        self.backbuffer = backbuffer
+        self.game = game
+        self.backbuffer = game.get_backbuffer()
 
     def print(self, text, x_pos=10, y_pos=10):
         self.x_pos = x_pos
         self.y_pos = y_pos
         text_bmp = self.font.render(text, False, self.color)
         self.backbuffer.blit(text_bmp, (self.x_pos, self.y_pos))
+
+    def set_font(self, font_file):
+        font_bytes = self.game.media_manager.get_file(font_file)
+        self.font = pygame.font.Font(font_bytes, self.font_size)
+
+    def set_font_size(self, font_size):
+        self.font_size = font_size
+
+    def set_font_color(self, color: pygame.Color):
+        self.color = color
 
 
 def main():

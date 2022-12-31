@@ -26,7 +26,7 @@ class ScreenPrinter():
 
     def set_font_size(self, font_size):
         self.font_size = font_size
-        self.font = pygame.font.Font(self.font_bytes, self.font_size)
+        self.font = pygame.font.Font(None, self.font_size)
 
     def set_font_color(self, color: pygame.Color):
         self.color = color

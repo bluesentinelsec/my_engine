@@ -8,10 +8,13 @@ class MusicManager:
         pygame.mixer.music.load(file)
 
     def set_volume(self, volume: float):
-        self.volume = volume
+        pygame.mixer.music.set_volume(volume)
     
-    def play_music(self):
-        pygame.mixer.music.play()
+    def play_music(self, loop=0):
+        """
+        pass -1 to loop music
+        """
+        pygame.mixer.music.play(loop)
 
     def pause_music(self):
         pygame.mixer.music.pause()

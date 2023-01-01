@@ -26,7 +26,9 @@ class Scene:
         on_exit performs any needed cleanup prior
         to exiting a scene
         """
-        pass
+        for each_ent in self.entities:
+            each_ent.on_exit()
+            each_ent = None
 
     def update(self):
         """

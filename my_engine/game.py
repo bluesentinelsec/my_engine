@@ -8,6 +8,7 @@ import my_engine.scene_manager
 import my_engine.scene
 import my_engine.media
 import my_engine.action
+import my_engine.music_manager
 
 # external
 import pygame
@@ -21,6 +22,9 @@ class MyGame:
 
         logging.debug(
             f"initializing game engine with settings: screen size: {width}x{height} fps: {fps_cap}, fullscreen: {fullscreen}, media file: {media_file}")
+
+        pygame.font.init()
+        pygame.mixer.init()
 
         self.screen_w = width
         self.screen_h = height
@@ -55,7 +59,9 @@ class MyGame:
 
         self.action_handler = my_engine.action.Action()
 
-        pygame.font.init()
+        self.music_manager = my_engine.music_manager.MusicManager()
+
+        
 
         random.seed()
 

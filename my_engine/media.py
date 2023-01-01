@@ -24,7 +24,7 @@ class MediaManager:
         if self.fallback_to_real_file:
             with open(file, "rb") as f:
                 data = f.read()
-                return data
+                return io.BytesIO(data)
         else:
             data = self.media_handle.read(file)
             return io.BytesIO(data)

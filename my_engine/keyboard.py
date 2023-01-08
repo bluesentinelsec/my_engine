@@ -38,64 +38,30 @@ class KeyBoard:
                 return False
 
 
-def is_key_down(py_key: int) -> bool:
-    """
-    Returns true if the key is held down.
-    The developer should pass in a pygame key
-    value such as 'pygame.K_UP'.
-    """
+    def is_key_down(self, py_key: int) -> bool:
+        """
+        Returns true if the key is held down.
+        The developer should pass in a pygame key
+        value such as 'pygame.K_UP'.
+        """
 
-    logging.debug("getting keyboard state")
-    key_state = pygame.key.get_pressed()
-    if key_state[py_key]:
-        logging.debug(f"key {py_key} is currently held down")
-        return True
+        logging.debug("getting keyboard state")
+        key_state = pygame.key.get_pressed()
+        if key_state[py_key]:
+            logging.debug(f"key {py_key} is currently held down")
+            return True
 
-    return False
-
-
-def is_key_up(py_key: int) -> bool:
-    """
-    Returns true if a key is NOT being pressed.
-    The developer should pass in a pygame key
-    value such as 'pygame.K_UP'.
-    """
-    key_state = pygame.key.get_pressed()
-    if key_state[py_key]:
         return False
 
-    return False
 
-def demo_keyboard(keyboard):
-    if keyboard.is_key_pressed_once(pygame.K_RETURN):
-        pass
+    def is_key_up(self, py_key: int) -> bool:
+        """
+        Returns true if a key is NOT being pressed.
+        The developer should pass in a pygame key
+        value such as 'pygame.K_UP'.
+        """
+        key_state = pygame.key.get_pressed()
+        if key_state[py_key]:
+            return False
 
-    if keyboard.is_key_pressed_once(pygame.K_SPACE):
-        pass
-
-
-def main():
-    logging.basicConfig(level=logging.DEBUG,
-                        format='%(levelname)s (%(filename)s:%(lineno)s) %(message)s')
-
-    pygame.init()
-    screen = pygame.display.set_mode((320, 200))
-
-    keyboard = KeyBoard()
-    while True:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                return
-
-        demo_keyboard(keyboard)
-
-        screen.fill((0, 0, 0))
-
-        pygame.display.update()
-
-        pygame.time.delay(100)
-
-
-if __name__ == "__main__":
-    main()
+        return False

@@ -52,7 +52,6 @@ class ControllerWrapper:
                 return True
             else:
                 # nothing is pressed
-                last_button_state = 1234567
                 return False
 
     def is_axis_down(self, py_axis):

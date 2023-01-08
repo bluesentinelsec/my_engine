@@ -1,5 +1,7 @@
 import uuid
 
+import my_engine.event
+import my_engine.event_manager
 import my_engine.game
 import my_engine.scene
 import my_engine.scene_manager
@@ -24,6 +26,8 @@ class Entity():
         self.alpha = 255  # sets image transparency
         self.game = game
         self.parent_scene = parent_scene
+        
+        self.event_manager_ptr = my_engine.event_manager.EventManager()
         # ToDo: animation member variables
 
     def set_ent_type(self, ent_type: str):

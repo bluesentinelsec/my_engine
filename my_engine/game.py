@@ -4,6 +4,7 @@ import random
 import sys
 
 # internal
+import my_engine.event_manager
 import my_engine.scene_manager
 import my_engine.scene
 import my_engine.media
@@ -61,6 +62,8 @@ class MyGame:
 
         self.music_manager = my_engine.music_manager.MusicManager()
 
+        self.event_manager_ptr = my_engine.event_manager.EventManager()
+
         
 
         random.seed()
@@ -96,6 +99,8 @@ class MyGame:
             self.delta_time = self.game_clock.tick(self.fps_cap)
 
             self.scene_manager.update_scene()
+
+            self.event_manager_ptr.update_observers()
 
             self.scene_manager.draw_scene()
 

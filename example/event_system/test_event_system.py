@@ -3,7 +3,7 @@ import logging
 import pygame
 import my_engine.event as event_t
 import my_engine.event_manager as ev
-import my_engine.keyboard as kb
+import my_engine.keyboard
 
 
 class Subscriber:
@@ -26,7 +26,7 @@ def main():
 
     pygame.init()
     screen = pygame.display.set_mode((320, 200))
-    kb = kb.KeyBoard()
+    kb = my_engine.keyboard.KeyBoard()
 
     # create an event manager
     # this object notifies subscribers/observers

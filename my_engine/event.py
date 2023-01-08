@@ -1,6 +1,6 @@
 import uuid
 
-import event_manager
+import my_engine.event_manager as event_manager
 
 
 class Event():

@@ -1,8 +1,8 @@
 from typing import List
 
-import event
-import observer
-import singleton
+import my_engine.event as event
+import my_engine.observer as observer
+import my_engine.singleton as singleton
 
 
 class EventManager(metaclass=singleton.SingletonMeta):

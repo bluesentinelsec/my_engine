@@ -5,7 +5,7 @@ import my_engine.game
 import pygame
 
 
-def fade_in(game: my_engine.game.MyGame, color: pygame.color.Color = pygame.color.Color(128, 128, 128, 255)):
+def fade_in(game: my_engine.game.Game, color: pygame.color.Color = pygame.color.Color(128, 128, 128, 255)):
     width = game.get_screen_width()
     height = game.get_screen_height()
     t_surface = pygame.Surface((width, height))
@@ -20,7 +20,7 @@ def fade_in(game: my_engine.game.MyGame, color: pygame.color.Color = pygame.colo
         pygame.time.delay(2)
 
 
-def fade_out(game: my_engine.game.MyGame, color: pygame.color.Color = pygame.color.Color(0, 0, 0, 0)):
+def fade_out(game: my_engine.game.Game, color: pygame.color.Color = pygame.color.Color(0, 0, 0, 0)):
     width = game.get_screen_width()
     height = game.get_screen_height()
     t_surface = pygame.Surface((width, height))
@@ -33,7 +33,7 @@ def fade_out(game: my_engine.game.MyGame, color: pygame.color.Color = pygame.col
         pygame.time.delay(5)
 
 
-def plot_pixels(game: my_engine.game.MyGame):
+def plot_pixels(game: my_engine.game.Game):
 
     width = game.get_screen_width()
     height = game.get_screen_height()

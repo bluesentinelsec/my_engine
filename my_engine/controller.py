@@ -56,29 +56,3 @@ class ControllerWrapper:
 
     def is_axis_down(self, py_axis):
         axis_state = self.controller_i.get_axis(py_axis)
-
-
-def main():
-
-    pygame.init()
-    screen = pygame.display.set_mode((320, 200))
-
-    # create the controller object
-    my_controller = ControllerWrapper(0)
-
-    while True:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                break
-
-        # test controller
-        if my_controller.is_button_pressed(pygame.CONTROLLER_BUTTON_A):
-            print("pressed A")
-
-        if my_controller.is_button_pressed_once(pygame.CONTROLLER_BUTTON_B):
-            print("pressed B")
-
-
-if __name__ == "__main__":
-    main()

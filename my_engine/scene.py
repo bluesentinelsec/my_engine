@@ -7,7 +7,7 @@ import pygame
 
 
 class Scene:
-    def __init__(self, game: "my_engine.game.MyGame", name: str = "undefined") -> None:
+    def __init__(self, game: "my_engine.game.Game", name: str = "undefined") -> None:
         self.game = game
         self.name = name
         self.entities: List["my_engine.entity.Entity"] = []

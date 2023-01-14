@@ -1,6 +1,8 @@
 """
-base component class for an
-entity component system
+Component defines a base component class used in an
+entity component system. All components extend
+the base component class with new attributes
+and methods.
 """
 
 import my_engine.entity as ent
@@ -10,11 +12,13 @@ import uuid
 
 
 class Component:
-
+    """
+    Component defines the base attributes and methods
+    for all component types.
+    """
     def __init__(self, component_type: str, owner: "ent.Entity") -> None:
-        super().__init__()
 
-        # pointer to the owning entity so we can
+        # set a pointer to the owning entity, so we can
         # query it for state
         self.owner = owner
 
@@ -23,11 +27,11 @@ class Component:
 
         self.component_type = component_type
         if self.component_type == "":
-            raise ("tried to create componenet without specifying its type")
+            raise "tried to create component without specifying its type"
 
         self.is_enabled = True
 
-        logging.info(f"initialized '{self.component_type}' component")
+        logging.info(f"initialized component: '{self.component_type}' - {self.component_id}")
 
     def get_id(self) -> str:
         return str(self.component_id)

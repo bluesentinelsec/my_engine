@@ -9,7 +9,7 @@ import my_engine.keyboard
 class Subscriber:
     def __init__(self) -> None:
         # create event manager singleton
-        self.event_manager_ptr = ev.EventManager()
+        self.event_manager_ptr = ev.EventManagerSingleton()
 
     def subscribe_pushed_space(self):
         self.event_manager_ptr.subscribe_event(
@@ -31,7 +31,7 @@ def main():
     # create an event manager
     # this object notifies subscribers/observers
     # of events they care about
-    event_manager = ev.EventManager()
+    event_manager = ev.EventManagerSingleton()
 
     # create a new event: 'pushed_space'
     # our observer will subscribe to this event

@@ -15,8 +15,9 @@ import my_engine.music_manager
 import pygame
 
 
-class MyGame:
-    def __init__(self, width: int = 320, height: int = 200, fps_cap: int = 60, fullscreen: bool = True, media_file: str = "data.dat"):
+class Game:
+    def __init__(self, width: int = 320, height: int = 200, fps_cap: int = 60, fullscreen: bool = True,
+                 media_file: str = "data.dat"):
         """
         initialize key game engine components
         """
@@ -54,17 +55,11 @@ class MyGame:
             logging.fatal(e)
             sys.exit(-1)
 
-        self.scene_manager = my_engine.scene_manager.SceneManager()
-
-        self.media_manager = my_engine.media.MediaManager(self.media_file)
+        self.scene_manager = my_engine.scene_manager.SceneManagerSingleton()
 
         self.action_handler = my_engine.action.Action()
 
-        self.music_manager = my_engine.music_manager.MusicManager()
-
-        self.event_manager_ptr = my_engine.event_manager.EventManager()
-
-        
+        self.event_manager_ptr = my_engine.event_manager.EventManagerSingleton()
 
         random.seed()
 
@@ -95,7 +90,6 @@ class MyGame:
         logging.debug("starting game loop")
 
         while not self.should_quit_game:
-
             self.delta_time = self.game_clock.tick(self.fps_cap)
 
             self.scene_manager.update_scene()

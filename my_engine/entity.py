@@ -5,32 +5,39 @@ import my_engine.event_manager
 import my_engine.game
 import my_engine.scene
 import my_engine.scene_manager
-
-import pygame
+import my_engine.component as cmp
 
 from typing import List
 
 
-class Entity():
-    def __init__(self, ent_type: str, game: "my_engine.game.MyGame", parent_scene: "my_engine.scene.Scene") -> None:
+class Entity:
+    """
+    Entity is a base type for creating in-game actors,
+    such as the player, enemies, objects, etc.
+    Entities consist of components; components extend
+    an entity with additional data and behaviors.
+    """
+    def __init__(self, ent_type: str, game: "my_engine.game.Game", parent_scene: "my_engine.scene.Scene") -> None:
         self.id = uuid.uuid4()  # uniquely identifies each entity
         self.entity_type: str = ent_type  # identifies the entity type
         self.groups = List[str]  # identifies groups the entity is a part of
         self.is_active = True  # used to pause/unpause the entity
-        self.image: pygame.Surface = None  # store the entity sprite image
-        # contains entity x/y position, width/height, etc.
-        self.rect: pygame.Rect = None
-        self.speed = 0  # how fast is the entity?
-        self.angle = 0  # what angle does the entity face?
-        self.scale = 0  # should we stretch/shrink the entity?
-        self.alpha = 255  # sets image transparency
         self.game = game
         self.parent_scene = parent_scene
-        
-        self.event_manager_ptr = my_engine.event_manager.EventManager()
-        # ToDo: animation member variables
+        self.event_manager_ptr = my_engine.event_manager.EventManagerSingleton()
+        self.components: List["cmp.Component"] = []
 
     def set_ent_type(self, ent_type: str):
+        """
+        assign the entity a type; the entity type
+        can be used to check if an entity matches
+        a specific type before performing additional logic,
+        such as checking a collision between a player type
+        entity and an enemy type entity.
+
+        :param ent_type:
+        :return:
+        """
         self.entity_type = ent_type
 
     def get_ent_type(self):
@@ -47,71 +54,36 @@ class Entity():
     def get_groups(self):
         return self.groups
 
-    def set_x_position(self, x_pos):
-        self.rect.x = x_pos
-
-    def set_y_position(self, y_pos):
-        self.rect.y = y_pos
-
-    def get_x_position(self):
-        return self.rect.x
-
-    def get_y_position(self):
-        return self.rect.y
-
-    def set_speed(self, speed):
-        self.speed = speed
-
-    def get_speed(self):
-        return self.speed
-
-    def set_angle(self, angle):
-        self.angle = angle
-
-    def get_angle(self):
-        return self.angle
-
-    def set_scale(self, scale):
-        self.scale = scale
-
-    def get_scale(self):
-        return self.scale
-
     def activate(self):
         self.is_active = True
 
     def deactivate(self):
         self.is_active = False
 
-    def set_image(self, image_file: str):
-        # load image by file name from media manager
-        self.image = pygame.image.load(
-            self.game.media_manager.get_file(image_file))
-        self.image = self.image.convert_alpha()
-        self.set_rect(self.image.get_rect())
-        self.rect.x = 0
-        self.rect.y = 0
+    def add_component(self, comp: "cmp.Component"):
+        self.components.append(comp)
 
-    def get_image(self):
-        return self.image
-
-    def get_rect(self):
-        return self.rect
-
-    def set_rect(self, rect: pygame.Rect):
-        self.rect = rect
-
-    def check_collision(self, entity_to_check: "Entity") -> bool:
-        return self.rect.colliderect(entity_to_check.rect)
+    def remove_component(self, cmp_id):
+        for comp in self.components:
+            if cmp_id == comp.get_id():
+                self.components.remove(comp)
 
     def on_load(self):
-        pass
+        for comp in self.components:
+            comp.on_load()
 
     def update(self):
-        pass
+        if not self.is_active:
+            return
+        for comp in self.components:
+            comp.update()
 
     def draw(self):
-        self.game.screen.blit(self.get_image(), self.get_rect())
+        if not self.is_active:
+            return
+        for comp in self.components:
+            comp.draw()
 
     def on_exit(self):
-        pass
+        for comp in self.components:
+            comp.on_exit()

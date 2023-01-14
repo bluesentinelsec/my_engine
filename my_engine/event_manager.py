@@ -5,7 +5,7 @@ import my_engine.observer as observer
 import my_engine.singleton as singleton
 
 
-class EventManager(metaclass=singleton.SingletonMeta):
+class EventManagerSingleton(metaclass=singleton.SingletonMeta):
 
     def __init__(self) -> None:
         self.queued_events: List["event.Event"] = []

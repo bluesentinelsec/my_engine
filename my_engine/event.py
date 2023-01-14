@@ -9,7 +9,7 @@ class Event():
 
         self.event_type: str = event_type
         self.guid: str = str(uuid.uuid4())
-        self.event_manager_ptr: "event_manager.EventManager" = event_manager.EventManager()
+        self.event_manager_ptr: "event_manager.EventManagerSingleton" = event_manager.EventManagerSingleton()
 
     def get_guid(self) -> str:
         return self.guid

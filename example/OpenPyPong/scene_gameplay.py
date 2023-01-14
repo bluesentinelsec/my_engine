@@ -13,7 +13,7 @@ import score
 
 
 class Scene(parent.Scene):
-    def __init__(self, game: "engine.MyGame") -> None:
+    def __init__(self, game: "engine.Game") -> None:
         super().__init__(game)
 
     def on_load(self):

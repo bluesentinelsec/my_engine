@@ -1,3 +1,5 @@
+# ToDo - move this into an animated sprite component
+
 import my_engine.game
 import my_engine.entity
 
@@ -5,7 +7,7 @@ import pygame
 
 
 class Animator:
-    def __init__(self, game: my_engine.game.MyGame) -> None:
+    def __init__(self, game: my_engine.game.Game) -> None:
         self.game = game
         self.frame_width = 0
         self.frame_height = 0

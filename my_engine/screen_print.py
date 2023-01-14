@@ -5,7 +5,7 @@ import pygame
 
 
 class ScreenPrinter():
-    def __init__(self, engine: "engine.MyGame") -> None:
+    def __init__(self, engine: "engine.Game") -> None:
         self.font_size = 30
         self.font_bytes = 0
         self.font = pygame.font.Font(None, self.font_size)

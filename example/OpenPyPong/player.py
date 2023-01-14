@@ -6,7 +6,7 @@ import my_engine.scene as parent_scene
 
 
 class Player(ent.Entity):
-    def __init__(self, ent_type: str, game: "game.MyGame", parent_scene: "parent_scene.Scene") -> None:
+    def __init__(self, ent_type: str, game: "game.Game", parent_scene: "parent_scene.Scene") -> None:
         super().__init__(ent_type, game, parent_scene)
 
         self.set_image("media/images/player.png")

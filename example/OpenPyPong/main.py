@@ -6,7 +6,7 @@ import scene_title as title
 
 def main():
     # instantiate the game engine
-    game = engine.MyGame(width=320, height=200, fps_cap=60, fullscreen=True)
+    game = engine.Game(width=320, height=200, fps_cap=60, fullscreen=True)
 
     # instantiate first level/scene and pass game engine to scene
     title_scene = title.Scene(game)

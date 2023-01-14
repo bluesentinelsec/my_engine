@@ -1,9 +1,10 @@
 import my_engine.scene
+import my_engine.singleton as singleton
 
 from typing import List
 
 
-class SceneManager:
+class SceneManagerSingleton(metaclass=singleton.SingletonMeta):
     def __init__(self):
         self.scene_list: List["my_engine.scene.Scene"] = []
 

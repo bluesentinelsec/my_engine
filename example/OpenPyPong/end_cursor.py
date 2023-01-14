@@ -11,7 +11,7 @@ import pygame
 
 
 class Cursor(ent.Entity):
-    def __init__(self, ent_type: str, game: "game.MyGame", parent_scene: "parent_scene.Scene") -> None:
+    def __init__(self, ent_type: str, game: "game.Game", parent_scene: "parent_scene.Scene") -> None:
         super().__init__(ent_type, game, parent_scene)
 
         self.start_position_x = 70

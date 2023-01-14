@@ -1,11 +1,12 @@
 import io
 import logging
 import os
-import sys
 import zipfile
 
+import my_engine.singleton as singleton
 
-class MediaManager:
+
+class MediaSingleton(metaclass=singleton.SingletonMeta):
     def __init__(self, media_file: str = "data.dat"):
         self.media_file = media_file
         self.media_handle = ""
@@ -29,8 +30,8 @@ class MediaManager:
             data = self.media_handle.read(file)
             return io.BytesIO(data)
 
-def create_media_file(out_file: str, media_directory: str):
 
+def create_media_file(out_file: str, media_directory: str):
     if not os.path.isdir(media_directory):
         logging.error(
             f"'{media_directory}' is not a directory")

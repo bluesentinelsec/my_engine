@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<entities>
+    <entity type="player">
+        <components>
+            <component type="transform" x_position="123.45" y_position="123.45"></component>
+            <component type="sprite" image_file="media/images/player.png"></component>
+        </components>
+    </entity>
+</entities>

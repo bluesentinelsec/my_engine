@@ -1,9 +1,13 @@
 <?xml version="1.0"?>
 <entities>
     <entity type="player">
-        <components>
-            <component type="transform" x_position="123.45" y_position="123.45"></component>
-            <component type="sprite" image_file="media/images/player.png"></component>
-        </components>
+        <component type="transform" x_position="123.45" y_position="123.45" rotation_degrees="0.0"
+            scale_x="1.0" scale_y="1.0"></component>
+        <component type="sprite" image_file="media/images/player.png"></component>
+    </entity>
+    <entity type="opponent">
+        <component type="transform" x_position="234.45" y_position="111.45" rotation_degrees="0.0"
+            scale_x="1.0" scale_y="1.0"></component>
+        <component type="sprite" image_file="media/images/player.png"></component>
     </entity>
 </entities>

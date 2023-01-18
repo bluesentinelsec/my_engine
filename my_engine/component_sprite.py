@@ -8,7 +8,7 @@ import pygame as pg
 class SpriteComponent(tr.TransformComponent):
     def __init__(self, image_file: str, owner: "ent.Entity") -> None:
         self.component_type: str = "sprite"
-        super().__init__(owner, self.component_type)
+        super().__init__(owner=owner, component_type=self.component_type)
 
         # get ptr to media manager singleton
         self.media_manager = media.MediaSingleton()

@@ -1,3 +1,4 @@
+import my_engine.entity as ent
 import my_engine.component as cmp
 
 

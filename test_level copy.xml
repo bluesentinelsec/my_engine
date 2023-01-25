@@ -5,4 +5,9 @@
             scale_x="1.0" scale_y="1.0"></component>
         <component type="sprite" image_file="media/images/player.png"></component>
     </entity>
+    <entity type="opponent">
+        <component type="transform" x_position="60" y_position="60" rotation_degrees="0.0"
+            scale_x="1.0" scale_y="1.0"></component>
+        <component type="sprite" image_file="media/images/opponent.png"></component>
+    </entity>
 </entities>

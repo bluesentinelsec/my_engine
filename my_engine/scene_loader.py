@@ -76,5 +76,5 @@ class SceneLoader:
             for each_ent in self.entity_list:
                 self.scene.add_entity(each_ent)
 
-        # return populated scene
+        # load scene
         self.game_ptr.scene_manager.change_scene(self.scene)

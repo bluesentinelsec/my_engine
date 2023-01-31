@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" width="320" height="200" tilewidth="1" tileheight="1" infinite="0" nextlayerid="5" nextobjectid="13">
+ <tileset firstgid="1" name="cursor" tilewidth="16" tileheight="16" tilecount="1" columns="1">
+  <image source="../images/cursor.png" width="16" height="16"/>
+ </tileset>
+ <imagelayer id="2" name="image_layer_background" locked="1">
+  <image source="../images/background.png" width="320" height="200"/>
+ </imagelayer>
+ <objectgroup id="3" name="object_layer_text">
+  <object id="1" name="text_title" x="46.2813" y="6" width="234.438" height="68">
+   <text fontfamily="Commodore 64 Pixelized" pixelsize="26" wrap="1" color="#ffffff" halign="center" valign="center">Open PyPong</text>
+  </object>
+  <object id="3" name="text_exit" x="115.026" y="106.52" width="87.938" height="26.3333">
+   <text fontfamily="Commodore 64 Pixelized" pixelsize="20" wrap="1" color="#ffffff" halign="center">Exit</text>
+  </object>
+  <object id="4" name="text_play" x="115.031" y="73.8333" width="87.938" height="26.3333">
+   <text fontfamily="Commodore 64 Pixelized" pixelsize="20" wrap="1" color="#ffffff" halign="center">Play</text>
+  </object>
+  <object id="10" name="text_created_in" x="55.8643" y="147.833" width="199.771" height="26.8333">
+   <text fontfamily="Commodore 64 Pixelized" pixelsize="10" wrap="1" color="#adadad" halign="center">Created in My_Engine for FFSjam2023</text>
+  </object>
+  <object id="11" name="text_source_code" x="74.8645" y="173.833" width="170.771" height="24.8333">
+   <text fontfamily="Commodore 64 Pixelized" pixelsize="5" wrap="1" color="#c9d487" halign="center" valign="center">Source code provided at: https://github.com/bluesentinelsec/my_engine</text>
+  </object>
+ </objectgroup>
+ <objectgroup id="4" name="object_layer_cursor">
+  <object id="12" name="cursor_object" gid="1" x="105.727" y="92" width="16" height="16"/>
+ </objectgroup>
+</map>

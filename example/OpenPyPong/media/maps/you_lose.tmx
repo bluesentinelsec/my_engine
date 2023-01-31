@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" width="40" height="25" tilewidth="8" tileheight="8" infinite="0" nextlayerid="5" nextobjectid="5">
+ <tileset firstgid="1" name="cursor" tilewidth="16" tileheight="16" tilecount="1" columns="1">
+  <image source="../images/cursor.png" width="16" height="16"/>
+ </tileset>
+ <imagelayer id="2" name="image_layer_background" locked="1">
+  <image source="../images/background.png" width="320" height="200"/>
+ </imagelayer>
+ <objectgroup id="3" name="object_layer_text">
+  <object id="1" name="you_lose" type="text" x="12.781" y="24.8333" width="303.438" height="68">
+   <text fontfamily="Commodore 64 Pixelized" pixelsize="42" wrap="1" color="#ffffff" halign="center" valign="center">You lose!</text>
+  </object>
+  <object id="2" name="return_to_title" type="text" x="37.1977" y="141.5" width="244.438" height="26.3333">
+   <text fontfamily="Commodore 64 Pixelized" wrap="1" color="#ffffff" halign="center">Return to title</text>
+  </object>
+  <object id="3" name="play_again" type="text" x="65.781" y="102.833" width="189.438" height="26.3333">
+   <text fontfamily="Commodore 64 Pixelized" wrap="1" color="#ffffff" halign="center">Play again</text>
+  </object>
+ </objectgroup>
+ <objectgroup id="4" name="object_layer_cursor">
+  <object id="4" name="cursor" type="cursor" gid="1" x="75" y="120" width="16" height="16"/>
+ </objectgroup>
+</map>

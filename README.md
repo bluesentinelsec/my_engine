@@ -4,6 +4,12 @@ My_Engine is a simple game engine built on top of the PyGame framework.
 
 My_Engine was created to learn about creating game engines, with a deisgn goal of making it easy to create entities and levels using only code.
 
+## Pardon our dust
+
+This repository is under active development.
+
+This project should be considered unstable and unusable until this message is removed.
+
 ## Prerequisites
 
 Install Python 3 and Pip for your platform.
